@@ -6,5 +6,6 @@ public class Program {
         l.push(0, 3);
         l.push(1, 4);
         l.push(4,5);
+        l.printList();
     }
 }
