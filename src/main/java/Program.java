@@ -9,5 +9,9 @@ public class Program {
         l.printList();
 
         l.revertPrintList();
+
+        l.pop(2);
+        l.printList();
+        l.revertPrintList();
     }
 }

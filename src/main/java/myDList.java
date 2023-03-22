@@ -44,6 +44,32 @@ public class myDList {
         return node;
     }
 
+    public void pop(int pos){
+        if (pos == 0){
+            if (head != null){
+                Node next = head.next;
+                next.prev = null;
+                head = next;
+                }
+            return;
+            }
+        Node current = head;
+        int index = 0;
+        while (current.next != null && index < pos - 1) {
+            current = current.next;
+            index++;
+        }
+        if (current.next.next == null){
+            current.next = null;
+            tail = current;
+            return;
+        }
+
+        Node next = current.next.next;
+        current.next = next;
+        next.prev = current;
+        }
+
     public void printList() {
         Node current = head;
         while (current != null) {
