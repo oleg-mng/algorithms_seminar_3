@@ -44,22 +44,22 @@ public class myDList {
         return node;
     }
 
-    public void pop(int pos){
-        if (pos == 0){
-            if (head != null){
+    public void pop(int pos) {
+        if (pos == 0) {
+            if (head != null) {
                 Node next = head.next;
                 next.prev = null;
                 head = next;
-                }
-            return;
             }
+            return;
+        }
         Node current = head;
         int index = 0;
         while (current.next != null && index < pos - 1) {
             current = current.next;
             index++;
         }
-        if (current.next.next == null){
+        if (current.next.next == null) {
             current.next = null;
             tail = current;
             return;
@@ -68,7 +68,43 @@ public class myDList {
         Node next = current.next.next;
         current.next = next;
         next.prev = current;
+    }
+
+    public void sort() {
+        boolean sorted = true;
+        while (sorted) {
+            sorted = false;
+            Node current = head;
+            while (current != null) {
+                if (current.next != null) {
+                    if (current.value > current.next.value) {
+                        Node prev = current.prev;
+                        Node next = current.next.next;
+                        Node node = current.next;
+
+                        if (prev != null) {
+                            prev.next = node;
+                        }
+                        else
+                            head = node;
+                        if (next != null){
+                            next.prev = current;
+                        }
+                        else
+                            tail = current;
+                        current.next = next;
+                        current.prev = node;
+                        node.next = current;
+                        node.prev = prev;
+
+                        sorted = true;
+                    }
+                }
+                current = current.next;
+            }
         }
+    }
+
 
     public void printList() {
         Node current = head;
